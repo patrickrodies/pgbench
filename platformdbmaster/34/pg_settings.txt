@@ -1,0 +1,70 @@
+Test results:
+   script   | clients | tps  | avg_latency | max_latency 
+------------+---------+------+-------------+-------------
+ select.sql |       8 | 8250 |           1 |          14
+
+Server platformdbmaster, client saltmaster-001.eu-west-1.2ga.nft
+
+Server info and settings in postgresql.conf:
+PostgreSQL 9.3.5 on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 4.6.3 20120306 (Red Hat 4.6.3-2), 64-bit
+              name              |                                                                                                                                                                current_setting                                                                                                                                                                
+--------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ archive_command                | /etc/rds/dbbin/pgscripts/rds_wal_archive %p
+ archive_mode                   | on
+ archive_timeout                | 5min
+ checkpoint_completion_target   | 0.9
+ checkpoint_segments            | 16
+ client_encoding                | UTF8
+ effective_cache_size           | 15279664kB
+ fsync                          | on
+ hot_standby                    | off
+ lo_compat_privileges           | off
+ log_checkpoints                | on
+ log_file_mode                  | 0644
+ log_hostname                   | on
+ log_line_prefix                | %t:%r:%u@%d:[%p]:
+ log_timezone                   | UTC
+ logging_collector              | on
+ max_connections                | 2486
+ max_locks_per_transaction      | 64
+ max_prepared_transactions      | 0
+ max_stack_depth                | 6MB
+ max_wal_senders                | 5
+ port                           | 5432
+ rds.extensions                 | btree_gin,btree_gist,chkpass,citext,cube,dblink,dict_int,dict_xsyn,earthdistance,fuzzystrmatch,hstore,intagg,intarray,isn,ltree,pgcrypto,pgrowlocks,pg_stat_statements,pg_trgm,plcoffee,plls,plperl,plpgsql,pltcl,plv8,postgis,postgis_tiger_geocoder,postgis_topology,postgres_fdw,sslinfo,tablefunc,test_parser,tsearch2,unaccent,uuid-ossp
+ rds.internal_databases         | rdsadmin
+ rds.superuser_variables        | session_replication_role
+ shared_buffers                 | 7639832kB
+ ssl                            | on
+ ssl_ca_file                    | /rdsdbdata/rds-metadata/ca-cert.pem
+ ssl_cert_file                  | /rdsdbdata/rds-metadata/server-cert.pem
+ ssl_key_file                   | /rdsdbdata/rds-metadata/server-key.pem
+ superuser_reserved_connections | 3
+ synchronous_commit             | on
+ TimeZone                       | UTC
+ unix_socket_group              | rdsdb
+ unix_socket_permissions        | 0700
+ wal_keep_segments              | 32
+ wal_level                      | hot_standby
+ wal_receiver_timeout           | 30s
+ wal_sender_timeout             | 30s
+
+
+benchmark client OS Configuration (may not be the same as the server)
+Linux saltmaster-001.eu-west-1.2ga.nft 3.14.20-20.44.amzn1.x86_64 #1 SMP Mon Oct 6 22:52:46 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
+
+/proc/sys/vm/dirty_background_bytes=0
+/proc/sys/vm/dirty_background_ratio=10
+/proc/sys/vm/dirty_bytes=0
+/proc/sys/vm/dirty_expire_centisecs=3000
+/proc/sys/vm/dirty_ratio=20
+/proc/sys/vm/dirty_writeback_centisecs=500
+
+proc on /proc type proc (rw,relatime)
+sysfs on /sys type sysfs (rw,relatime)
+devtmpfs on /dev type devtmpfs (rw,relatime,size=1921264k,nr_inodes=480316,mode=755)
+devpts on /dev/pts type devpts (rw,relatime,gid=5,mode=620,ptmxmode=000)
+tmpfs on /dev/shm type tmpfs (rw,relatime)
+/dev/xvda1 on / type ext4 (rw,noatime,data=ordered)
+none on /proc/sys/fs/binfmt_misc type binfmt_misc (rw,relatime)
+/dev/xvdc on /media/ephemeral0 type ext4 (rw,noatime,data=ordered)
